@@ -1,0 +1,16 @@
+// filepath: d:\c\C complex\.vscode\launch.json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "myDebug",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "Compile",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "cwd": "${fileDirname}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:/program/mingw64/bin/gdb.exe" // 替换为实际路径
+        }
+    ]
+}
