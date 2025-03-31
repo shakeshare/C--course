@@ -1,2 +1,2 @@
 # C--course  
-byd
+this is for my xdu c course
