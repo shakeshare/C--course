@@ -12,7 +12,7 @@ void read(const char* path,int n)
     fp=fopen(path,"rb");
     if(fp==NULL)
     {
-        printf("error\n");
+        perror("error\n");
         exit(1);
     }
         fread(gimage,sizeof(unsigned char),n*n,fp);
@@ -26,7 +26,7 @@ void write(const char* path,int n)
     fp=fopen(path,"wb");
     if(fp==NULL)
     {   
-        printf("error\n");
+        perror("error\n");
         exit(1);
     }
     
