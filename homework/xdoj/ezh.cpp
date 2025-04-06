@@ -3,8 +3,8 @@
 #include <string.h>
 #include <math.h>
 #define MAX 512 //假设图像最大为512*512
-int gimage[MAX][MAX]={0};
-int mimage[MAX][MAX]={0};
+unsigned char gimage[MAX][MAX]={0};
+unsigned char mimage[MAX][MAX]={0};
 void read(const char* path,int n)
 {    
      FILE *fp;
@@ -15,10 +15,8 @@ void read(const char* path,int n)
         printf("error\n");
         exit(1);
     }
-    for(i=0;i<n*n;i++)
-    {
-        fread(gimage[i],sizeof(int),n*n,fp);
-    }
+        fread(gimage,sizeof(unsigned char),n*n,fp);
+
     fclose(fp);
 }
 void write(const char* path,int n)
@@ -31,13 +29,13 @@ void write(const char* path,int n)
         printf("error\n");
         exit(1);
     }
-    for(i=0;i<n*n;i++)
-    {
-        fwrite(mimage[i],sizeof(int),n*n,fp);
-    }
+    
+    
+    fwrite(mimage,sizeof(unsigned char),n*n,fp);
+    
     fclose(fp);
 }
-void convert(int gimage[MAX][MAX],int mimage [MAX][MAX],int r,double t,int n)
+void convert(unsigned char gimage[MAX][MAX],unsigned char mimage [MAX][MAX],int r,double t,int n)
 {
     int i,j;
     int x,y;
@@ -54,7 +52,7 @@ void convert(int gimage[MAX][MAX],int mimage [MAX][MAX],int r,double t,int n)
           
             if(abs(x-i)<=r && abs(y-j)<=r)
             {
-                sum+=gimage[x][y];
+                sum=gimage[x][y]+sum;
                 count++;
 
             }
@@ -63,13 +61,14 @@ void convert(int gimage[MAX][MAX],int mimage [MAX][MAX],int r,double t,int n)
     sum=sum/count;
 if(sum>t)
     {
-        mimage[i][j]=1;
+        mimage[i][j]=255;
     }
     else
     {
         mimage[i][j]=0;
     }
     sum=0;
+    count=0;
   }
 }
     return ;
@@ -85,7 +84,7 @@ int main(int argc,char *argv[])
     gray=argv[1];
     mono=argv[2];
     r=atoi(argv[3]+3);
-    t=atoi(argv[4]+3);
+    t=atof(argv[4]+3);
     read(gray,n);
     convert(gimage,mimage,r,t,n);
     write(mono,n);
