@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <math.h>
 #define MAX 512 //假设图像最大为512*512
 unsigned char gimage[MAX][MAX]={0};
@@ -45,12 +44,15 @@ void convert(unsigned char gimage[MAX][MAX],unsigned char mimage [MAX][MAX],int 
  {
     for(j=0;j<n;j++)
   {  
-    for(x=0;x<n;x++)
+    int x_start = (i - r) > 0 ? (i - r) : 0;
+    int x_end = (i + r) < (n-1) ? (i + r) : (n-1);
+    int y_start = (j - r) > 0 ? (j - r) : 0;
+    int y_end = (j + r) < (n-1) ? (j + r) : (n-1);
+    for(x=x_start;x<=x_end;x++)
     {
-        for(y=0;y<n;y++)
+        for(y=y_start;y<=y_end;y++)
         {
           
-            if(abs(x-i)<=r && abs(y-j)<=r)
             {
                 sum=gimage[x][y]+sum;
                 count++;
