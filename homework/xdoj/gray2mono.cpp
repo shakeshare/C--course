@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #define MAX 512 //假设图像最大为512*512
 unsigned char gimage[MAX][MAX]={0};
 unsigned char mimage[MAX][MAX]={0};
