@@ -3,7 +3,7 @@ using namespace std;
 typedef struct Friend
 {
     string name;
-    char id;
+    string id;
 }txr;
 int choice;
 char c;
@@ -132,11 +132,43 @@ void search()
 }
 void save()
 {
-     
+     cout << "按Enter键保存" << endl;
+        if(cin.get() == '\n')
+       {cin.ignore();
+        ofstream file("Saving file.txt");
+        if (file.is_open()) {
+            for (const auto& t : txl) {
+                file << "姓名: " << t.name << ", ID: " << t.id << endl;
+            }
+            file.close();
+            cout << "保存成功" << endl;
+        } else {
+            cout << "无法打开文件进行保存" << endl;
+        }}
+        return ;
 }
 void load()
 {
-
+        ifstream file("Saving file.txt");
+         if(file.is_open())
+              {
+                txl.clear();
+                string line;
+                while(!file.eof())
+                {
+                    txr temp;
+                    getline(file, line);
+                    temp.name = line.substr(4, line.find(",") - 4);
+                    temp.id = line.substr(line.find(",") + 6);
+                    txl.push_back(temp);
+                }
+                file.close();
+              }
+            else
+            {
+                cout << "无法打开文件进行加载" << endl;
+            }
+            return ;
 }
 int main()
 {
