@@ -29,7 +29,7 @@ void enter()
         cout << "没有数据" << endl;
     }
     while(true)
-  {   cout << "按Y输入,按N退出" << endl;
+  {   cout << "按Y继续输入,按N退出" << endl;
     cin >> c;
     if(c == 'Y' || c == 'y')
     {
@@ -82,7 +82,7 @@ void del()
         {
             cout << "没有找到该联系人" << endl;
         }}
-        cout << "按Y继续,按N退出" << endl;
+        cout << "按Y继续删除,按N退出" << endl;
         cin >> c;
         if(c == 'N' || c == 'n')
         {
@@ -197,26 +197,12 @@ int main()
                 load();
                 break;
             case 0:
+                cout << "退出成功" << endl;
                 exit(0);
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-        cout << "按Y继续,按N退出" << endl;
-        cin >> c;
-        if(c == 'N' || c == 'n')
-        {
-            cout << "退出成功" << endl;
-            break;
-        }
-        else if(c == 'Y' || c == 'y')
-        {
-            continue;
-        }
-        else
-        {
-            cout << "输入错误" << endl;
-        }
-
+        
     }
     return 0;
 }
