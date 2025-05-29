@@ -201,7 +201,7 @@ int main()
                 cout << "退出成功" << endl;
                 exit(0);
             default:
-                cout << "Invalid choice. Please try again." << endl;
+                cout << "无效操作,请重新输入" << endl;
         }
         
     }
