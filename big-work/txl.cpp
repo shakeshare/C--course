@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <fstream>
 using namespace std;
 typedef struct Friend
 {
@@ -58,17 +62,13 @@ void del()
       cout << "输入要删除的联系人的姓名" << endl;
         string name;
         cin >> name;
-      cout << "按Enter键查询" << endl;
         if(cin.get() == '\n')
-       {cin.ignore();
-        getline(cin, name);
-        auto p = find_if(txl.begin(), txl.end(), [&](const txr& t) { return t.name == name; });
+       {auto p = find_if(txl.begin(), txl.end(), [&](const txr& t) { return t.name == name; });
         if (p != txl.end())
         {
-            cout << "按Enter键删除" << endl;
+            cout << "查询到该联系人,按Enter键删除" << endl;
             if(cin.get() == '\n')
             {
-                cin.ignore();
                  txl.erase(p);
                 cout << "删除成功" << endl;
             }
@@ -114,11 +114,9 @@ void listrecord()
 void search()
 {
     string name;
-     cout << "输入要查询的联系人的姓名" << endl;
-     cout << "按Enter键查询" << endl;
+     cout << "输入要查询的联系人的姓名后按Enter键查询" << endl;
         if(cin.get() == '\n')
-       {cin.ignore();
-        cin >> name;
+       {cin >> name;
         auto p = find_if(txl.begin(), txl.end(), [&](const txr& t) { return t.name == name; });
         if (p != txl.end())
         {
@@ -133,9 +131,9 @@ void search()
 void save()
 {
      cout << "按Enter键保存" << endl;
+        cin.ignore(); 
         if(cin.get() == '\n')
-       {cin.ignore();
-        ofstream file("Saving file.txt");
+       { ofstream file("Saving file.txt");
         if (file.is_open()) {
             for (const auto& t : txl) {
                 file << "姓名: " << t.name << ", ID: " << t.id << endl;
@@ -148,26 +146,29 @@ void save()
         return ;
 }
 void load()
-{
-        ifstream file("Saving file.txt");
+{       cout << "按Enter键加载" << endl;
+        cin.ignore(); 
+        if(cin.get() == '\n')
+       { ifstream file("Saving file.txt");
          if(file.is_open())
               {
                 txl.clear();
                 string line;
-                while(!file.eof())
+                while(getline(file, line))
                 {
+                    if (line.empty()) continue;
                     txr temp;
-                    getline(file, line);
-                    temp.name = line.substr(4, line.find(",") - 4);
+                    temp.name = line.substr(8, line.find(",") - 8);
                     temp.id = line.substr(line.find(",") + 6);
                     txl.push_back(temp);
                 }
                 file.close();
+                cout << "成功打开文件进行加载" << endl;
               }
             else
             {
                 cout << "无法打开文件进行加载" << endl;
-            }
+            }}
             return ;
 }
 int main()
