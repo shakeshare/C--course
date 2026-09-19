@@ -6,8 +6,8 @@
 using namespace std;
 typedef struct Friend
 {
-    string name;
-    string id;
+    string Name;
+    string Id;
 } txr;
 int choice;
 char c;
@@ -40,9 +40,10 @@ void enter()
         {
             txr t;
             cout << "请输入姓名" << endl;
-            cin >> t.name;
+            cin >> t.Name
+    ;
             cout << "请输入ID" << endl;
-            cin >> t.id;
+            cin >> t.Id;
             txl.push_back(t);
             cout << "输入成功" << endl;
         }
@@ -63,12 +64,16 @@ void del()
     while (true)
     {
         cout << "输入要删除的联系人的姓名" << endl;
-        string name;
-        cin >> name;
+        string Name
+;
+        cin >> Name
+;
         if (cin.get() == '\n')
         {
             auto p = find_if(txl.begin(), txl.end(), [&](const txr &t)
-                             { return t.name == name; });
+                             { return t.Name
+                         == Name
+                        ; });
             if (p != txl.end())
             {
                 cout << "查询到该联系人,按Enter键删除" << endl;
@@ -115,22 +120,27 @@ void listrecord()
     cout << "联系人列表：" << endl;
     for (const auto &t : txl)
     {
-        cout << "姓名: " << t.name << ", ID: " << t.id << endl;
+        cout << "姓名: " << t.Name
+ << ", ID: " << t.Id << endl;
     }
     return;
 }
 void search()
 {
-    string name;
+    string Name;
     cout << "输入要查询的联系人的姓名后按Enter键查询" << endl;
     if (cin.get() == '\n')
     {
-        cin >> name;
+        cin >> Name
+;
         auto p = find_if(txl.begin(), txl.end(), [&](const txr &t)
-                         { return t.name == name; });
+                         { return t.Name
+                     == Name
+                    ; });
         if (p != txl.end())
         {
-            cout << "姓名: " << p->name << ", ID: " << p->id << endl;
+            cout << "姓名: " << p->Name
+     << ", ID: " << p->Id << endl;
         }
         else
         {
@@ -150,7 +160,8 @@ void save()
         {
             for (const auto &t : txl)
             {
-                file << "姓名: " << t.name << ", ID: " << t.id << endl;
+                file << "姓名: " << t.Name
+         << ", ID: " << t.Id << endl;
             }
             file.close();
             cout << "保存成功" << endl;
@@ -178,8 +189,9 @@ void load()
                 if (line.empty())
                     continue;
                 txr temp;
-                temp.name = line.substr(8, line.find(",") - 8);
-                temp.id = line.substr(line.find(",") + 6);
+                temp.Name
+         = line.substr(8, line.find(",") - 8);
+                temp.Id = line.substr(line.find(",") + 6);
                 txl.push_back(temp);
             }
             file.close();

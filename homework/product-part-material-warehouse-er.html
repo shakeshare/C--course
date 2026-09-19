@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工厂产品供应链概念模型 - 陈氏 ER 图</title>
+  <style>
+    :root {
+      --ink: #1d2939;
+      --muted: #667085;
+      --paper: #fbfaf7;
+      --entity: #dceeff;
+      --relationship: #ffe8b6;
+      --attribute: #fffdf7;
+      --accent: #176b87;
+      --line: #344054;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    }
+    header {
+      padding: 28px 48px 20px;
+      border-bottom: 1px solid #e4e7ec;
+      background: #fff;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: 1px; }
+    header p { margin: 0; color: var(--muted); font-size: 14px; }
+    main { padding: 28px 38px 44px; }
+    .canvas {
+      overflow: auto;
+      padding: 12px;
+      border: 1px solid #e4e7ec;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fff 0%, #f8fbfc 100%);
+      box-shadow: 0 12px 34px rgba(16, 24, 40, .07);
+    }
+    svg { display: block; width: 100%; max-width: 1280px; height: auto; margin: auto; }
+    .line { stroke: var(--line); stroke-width: 2; fill: none; }
+    .entity { fill: var(--entity); stroke: var(--accent); stroke-width: 2.5; }
+    .relationship { fill: var(--relationship); stroke: #b76e00; stroke-width: 2.5; }
+    .attribute { fill: var(--attribute); stroke: #667085; stroke-width: 2; }
+    .label { fill: var(--ink); font-size: 18px; text-anchor: middle; dominant-baseline: middle; }
+    .small { fill: var(--muted); font-size: 14px; text-anchor: middle; }
+    .cardinality { fill: #b42318; font-size: 16px; font-weight: 700; text-anchor: middle; }
+    .key { text-decoration: underline; font-weight: 700; }
+    .note { fill: #f2f4f7; stroke: #98a2b3; stroke-width: 1.5; }
+    .note-text { fill: #475467; font-size: 14px; }
+    .legend { margin: 18px auto 0; width: min(1100px, 100%); display: flex; gap: 28px; flex-wrap: wrap; color: #475467; font-size: 14px; }
+    .legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .legend i { display: inline-block; width: 28px; height: 18px; }
+    .legend .box { background: var(--entity); border: 2px solid var(--accent); }
+    .legend .diamond { width: 17px; height: 17px; transform: rotate(45deg); background: var(--relationship); border: 2px solid #b76e00; }
+    .legend .oval { border-radius: 50%; background: var(--attribute); border: 2px solid #667085; }
+    footer { margin-top: 18px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>工厂产品、零件、材料与仓库概念模型</h1>
+    <p>陈氏（Chen）E-R 图：矩形表示实体，菱形表示联系，椭圆表示属性，红色数字表示联系基数。</p>
+  </header>
+  <main>
+    <section class="canvas" aria-label="工厂概念模型陈氏ER图">
+      <svg viewBox="0 0 1280 820" role="img" aria-labelledby="diagram-title diagram-desc">
+        <title id="diagram-title">工厂产品、零件、材料与仓库的陈氏 ER 图</title>
+        <desc id="diagram-desc">产品与零件通过组成联系关联，零件与材料通过制造联系关联，产品、零件与仓库共同参与存放三元联系，材料与仓库通过材料存放联系关联。</desc>
+
+        <!-- 产品实体及属性 -->
+        <ellipse class="attribute" cx="168" cy="112" rx="96" ry="32" />
+        <text class="label key" x="168" y="112">产品编号</text>
+        <line class="line" x1="168" y1="144" x2="168" y2="205" />
+        <ellipse class="attribute" cx="340" cy="112" rx="82" ry="32" />
+        <text class="label" x="340" y="112">产品名称</text>
+        <line class="line" x1="340" y1="144" x2="340" y2="205" />
+        <rect class="entity" x="190" y="205" width="170" height="72" rx="4" />
+        <text class="label" x="275" y="241">产品</text>
+
+        <!-- 零件实体及属性 -->
+        <ellipse class="attribute" cx="122" cy="405" rx="82" ry="32" />
+        <text class="label key" x="122" y="405">零件编号</text>
+        <line class="line" x1="204" y1="405" x2="276" y2="405" />
+        <rect class="entity" x="276" y="369" width="170" height="72" rx="4" />
+        <text class="label" x="361" y="405">零件</text>
+        <ellipse class="attribute" cx="361" cy="520" rx="82" ry="32" />
+        <text class="label" x="361" y="520">零件名称</text>
+        <line class="line" x1="361" y1="441" x2="361" y2="488" />
+
+        <!-- 材料实体及属性 -->
+        <rect class="entity" x="834" y="369" width="170" height="72" rx="4" />
+        <text class="label" x="919" y="405">材料</text>
+        <ellipse class="attribute" cx="919" cy="520" rx="82" ry="32" />
+        <text class="label key" x="919" y="520">材料编号</text>
+        <line class="line" x1="919" y1="441" x2="919" y2="488" />
+        <ellipse class="attribute" cx="1110" cy="405" rx="82" ry="32" />
+        <text class="label" x="1110" y="405">材料名称</text>
+        <line class="line" x1="1004" y1="405" x2="1028" y2="405" />
+        <ellipse class="attribute" cx="919" cy="634" rx="82" ry="32" />
+        <text class="label" x="919" y="634">材料类别</text>
+        <line class="line" x1="919" y1="552" x2="919" y2="602" />
+
+        <!-- 仓库实体及属性 -->
+        <rect class="entity" x="535" y="669" width="170" height="72" rx="4" />
+        <text class="label" x="620" y="705">仓库</text>
+        <ellipse class="attribute" cx="452" cy="705" rx="82" ry="32" />
+        <text class="label key" x="452" y="705">仓库编号</text>
+        <line class="line" x1="534" y1="705" x2="535" y2="705" />
+        <ellipse class="attribute" cx="788" cy="705" rx="82" ry="32" />
+        <text class="label" x="788" y="705">仓库名称</text>
+        <line class="line" x1="705" y1="705" x2="706" y2="705" />
+        <ellipse class="attribute" cx="620" cy="790" rx="82" ry="24" />
+        <text class="label" x="620" y="790">仓库地址</text>
+        <line class="line" x1="620" y1="741" x2="620" y2="766" />
+
+        <!-- 产品-零件：组成 -->
+        <polygon class="relationship" points="490,241 555,196 620,241 555,286" />
+        <text class="label" x="555" y="241">组成</text>
+        <line class="line" x1="360" y1="241" x2="490" y2="241" />
+        <line class="line" x1="555" y1="286" x2="361" y2="369" />
+        <text class="cardinality" x="420" y="230">M</text>
+        <text class="cardinality" x="462" y="318">N</text>
+
+        <!-- 零件-材料：制造 -->
+        <polygon class="relationship" points="615,405 680,360 745,405 680,450" />
+        <text class="label" x="680" y="405">制造</text>
+        <line class="line" x1="446" y1="405" x2="615" y2="405" />
+        <line class="line" x1="745" y1="405" x2="834" y2="405" />
+        <text class="cardinality" x="550" y="394">N</text>
+        <text class="cardinality" x="785" y="394">M</text>
+        <text class="small" x="680" y="478">用量（可选属性）</text>
+        <ellipse class="attribute" cx="680" cy="520" rx="82" ry="32" />
+        <text class="label" x="680" y="520">用量</text>
+        <line class="line" x1="680" y1="450" x2="680" y2="488" />
+
+        <!-- 产品、零件、仓库：存放（三元联系） -->
+        <polygon class="relationship" points="445,565 525,520 605,565 525,610" />
+        <text class="label" x="525" y="565">存放</text>
+        <line class="line" x1="275" y1="277" x2="455" y2="548" />
+        <line class="line" x1="446" y1="405" x2="485" y2="545" />
+        <line class="line" x1="565" y1="590" x2="600" y2="669" />
+        <text class="cardinality" x="378" y="430">M</text>
+        <text class="cardinality" x="470" y="485">N</text>
+        <text class="cardinality" x="587" y="635">N</text>
+        <ellipse class="attribute" cx="680" cy="625" rx="82" ry="32" />
+        <text class="label" x="680" y="625">存放数量</text>
+        <line class="line" x1="605" y1="565" x2="632" y2="604" />
+
+        <!-- 材料-仓库：材料存放 -->
+        <polygon class="relationship" points="1015,610 1095,565 1175,610 1095,655" />
+        <text class="label" x="1095" y="610">材料存放</text>
+        <line class="line" x1="919" y1="441" x2="1055" y2="585" />
+        <line class="line" x1="1035" y1="635" x2="705" y2="685" />
+        <text class="cardinality" x="986" y="520">N</text>
+        <text class="cardinality" x="780" y="670">M</text>
+        <ellipse class="attribute" cx="1095" cy="735" rx="82" ry="32" />
+        <text class="label" x="1095" y="735">材料存放数量</text>
+        <line class="line" x1="1095" y1="655" x2="1095" y2="703" />
+
+        <!-- 建模说明 -->
+        <rect class="note" x="55" y="660" width="310" height="100" rx="8" />
+        <text class="note-text" x="75" y="688">说明：</text>
+        <text class="note-text" x="75" y="713">1. 产品与零件为多对多；</text>
+        <text class="note-text" x="75" y="738">2. 存放是产品、零件、仓库三元联系。</text>
+      </svg>
+    </section>
+    <div class="legend" aria-label="图例">
+      <span><i class="box"></i>实体</span>
+      <span><i class="diamond"></i>联系</span>
+      <span><i class="oval"></i>属性（下划线为主键）</span>
+      <span><b style="color:#b42318">1 / N / M</b> 联系基数</span>
+    </div>
+    <footer>
+      建模假设：产品与零件为多对多，零件与材料为多对多；零件按所属产品存放，因此“存放”是产品、零件、仓库三元联系，存放数量属于该联系。材料按类别存放，材料存放数量属于“材料存放”联系。
+    </footer>
+  </main>
+</body>
+</html>
