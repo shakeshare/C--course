@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "../../../Java-course"
+			"path": "D:/Java-course"
 		},
 		{
-			"path": "../.."
+			"path": "D:/c-course"
+		},
+		{
+			"path": "D:/Pythoncourse"
 		}
 	],
 	"settings": {}
