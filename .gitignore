@@ -1,0 +1,17 @@
+# Build output
+*.exe
+*.out
+*.o
+*.obj
+build/
+bin/
+
+# IDE and debugger files
+.vs/
+*.cph
+*.pdb
+*.ilk
+
+# Temporary editor files
+*~
+tempCodeRunnerFile.cpp
