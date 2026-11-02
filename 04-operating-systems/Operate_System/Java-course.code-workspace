@@ -1,14 +1,24 @@
 {
 	"folders": [
 		{
-			"path": "D:/Java-course"
+			"path": "D:/Java-course/Algorithms/experiments/01-Percolation"
+		},
+		{
+			"path": "D:/Java-course/FarmProject"
+		},
+		{
+			"path": "D:/Java-course/SmallAssignments"
 		},
 		{
 			"path": "D:/c-course"
 		},
 		{
 			"path": "D:/Pythoncourse"
+		},
+		{
+			"path": "D:/SQL"
 		}
+		
 	],
 	"settings": {}
 }
